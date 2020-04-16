@@ -1,4 +1,5 @@
-package files;
+package filesMngmt;
+
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

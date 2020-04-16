@@ -9,6 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import filesMngmt.Helper;
+import filesMngmt.MyAutoCloseable;
+import filesMngmt.ZipFileMngmt;
+import formattingAndExpressions.WorkingWithString;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -18,12 +23,16 @@ public class Main {
 //			doTryWithResources();
 //		    doTryWithResourcesMulti();
 //			doCloseThing();
-			playWithZipFiles();			
+//			playWithZipFiles();			
 		} catch (Exception e) {
 			System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
 			e.printStackTrace();
 		}
 		
+//		WorkingWithString.creatingAStringComposing();
+//		WorkingWithString.handleEmptyString();
+//		WorkingWithString.handleStringWithFormat();
+		WorkingWithString.handleFormatFlag();
 	}
 	
 	public static void playWithZipFiles() {
