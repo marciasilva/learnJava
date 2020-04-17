@@ -13,10 +13,11 @@ import filesMngmt.Helper;
 import filesMngmt.MyAutoCloseable;
 import filesMngmt.ZipFileMngmt;
 import formattingAndExpressions.WorkingWithString;
+import workingWithCollections.SimpleCollection;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		try {
 //			doTryCatchFinally();
@@ -32,7 +33,15 @@ public class Main {
 //		WorkingWithString.creatingAStringComposing();
 //		WorkingWithString.handleEmptyString();
 //		WorkingWithString.handleStringWithFormat();
-		WorkingWithString.handleFormatFlag();
+//		WorkingWithString.handleFormatFlag();
+//		WorkingWithString.usingRegExp();
+		
+//		SimpleCollection.usingArrayList();
+//		SimpleCollection.removingAMember();
+		SimpleCollection.collectionsWithLambdas();
+		SimpleCollection.converting();
+		SimpleCollection.sorting();
+		SimpleCollection.usingMap();
 	}
 	
 	public static void playWithZipFiles() {
