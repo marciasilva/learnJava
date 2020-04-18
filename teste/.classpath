@@ -5,5 +5,7 @@
 	<classpathentry kind="src" path="stringTraining"/>
 	<classpathentry kind="src" path="fileTraining"/>
 	<classpathentry kind="src" path="collections"/>
+	<classpathentry kind="src" path="controlling"/>
+	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
