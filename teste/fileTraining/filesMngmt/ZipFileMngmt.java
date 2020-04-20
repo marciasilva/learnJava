@@ -31,14 +31,14 @@ public class ZipFileMngmt {
 	}
 
 	public void copyToZip(FileSystem zipFs) throws IOException {
-		Path sourceFile = Paths.get("file1.txt");
-		Path destinationFile = zipFs.getPath("/file1Copied.txt");
+		Path sourceFile = Paths.get("./resources/coraCoralina.txt");
+		Path destinationFile = zipFs.getPath("./resources/file1Copied.txt");
 
 		Files.copy(sourceFile, destinationFile, StandardCopyOption.REPLACE_EXISTING);
 	}
 
 	public void writeToFileInZip1(FileSystem zipFs, String[] data) throws IOException {
-		try (BufferedWriter writer = Files.newBufferedWriter(zipFs.getPath("/newFile1.txt"))) {
+		try (BufferedWriter writer = Files.newBufferedWriter(zipFs.getPath("./resources/newFile1.txt"))) {
 			for (String d : data) {
 				writer.write(d);
 				writer.newLine();
@@ -47,7 +47,7 @@ public class ZipFileMngmt {
 	}
 
 	public void writeToFileInZip2(FileSystem zipFs, String[] data) throws IOException {
-		Files.write(zipFs.getPath("/newFile2.txt"), Arrays.asList(data), Charset.defaultCharset(),
+		Files.write(zipFs.getPath("./resources/newFile2.txt"), Arrays.asList(data), Charset.defaultCharset(),
 				StandardOpenOption.CREATE);
 	}
 

@@ -16,36 +16,37 @@ import filesMngmt.MyAutoCloseable;
 import filesMngmt.ZipFileMngmt;
 import formattingAndExpressions.WorkingWithString;
 import logSystemMngmt.DoLogCalls;
+import multiAndConcurrency.Adder;
 import workingWithCollections.SimpleCollection;
 
 public class Main {
-	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		try {
+	public static void main(String[] args) throws InterruptedException, IOException {
+//		// TODO Auto-generated method stub
+//		try {
 //			doTryCatchFinally();
 //			doTryWithResources();
 //		    doTryWithResourcesMulti();
 //			doCloseThing();
 //			playWithZipFiles();			
-		} catch (Exception e) {
-			System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
-			e.printStackTrace();
-		}
-
+//		} catch (Exception e) {
+//			System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+//			e.printStackTrace();
+//		}
+//
 //		WorkingWithString.creatingAStringComposing();
 //		WorkingWithString.handleEmptyString();
 //		WorkingWithString.handleStringWithFormat();
 //		WorkingWithString.handleFormatFlag();
 //		WorkingWithString.usingRegExp();
-
+//
 //		SimpleCollection.usingArrayList();
 //		SimpleCollection.removingAMember();
 //		SimpleCollection.collectionsWithLambdas();
 //		SimpleCollection.converting();
 //		SimpleCollection.sorting();
 //		SimpleCollection.usingMap();
-
-		/* Edit run configurations -> arguments */
+//
+//		/* Edit run configurations -> arguments */
 //		ExerciseCmdLine.readFileFromArgs(args);
 //		StoreAndLoadProperty.createProperty();
 //		StoreAndLoadProperty.writePropertyOnSimpleText();
@@ -53,12 +54,15 @@ public class Main {
 //		StoreAndLoadProperty.writePropertiesInXML();
 //		StoreAndLoadProperty.readPropertiesFromXML();
 //		StoreAndLoadProperty.createPropertyDefaults();
-
+//
 //		StoreAndLoadProperty.loadDefaultPropertiesFromFile();
+//		
+//	
+//		DoLogCalls.printlogMessages();
 		
-	
-		DoLogCalls.printlogMessages();
-
+		Adder.readWriteFilesWithThread();
+		
+		
 	}
 
 	public static void playWithZipFiles() {
