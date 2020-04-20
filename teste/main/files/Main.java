@@ -15,10 +15,10 @@ import filesMngmt.Helper;
 import filesMngmt.MyAutoCloseable;
 import filesMngmt.ZipFileMngmt;
 import formattingAndExpressions.WorkingWithString;
+import logSystemMngmt.DoLogCalls;
 import workingWithCollections.SimpleCollection;
 
 public class Main {
-
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		try {
@@ -45,7 +45,7 @@ public class Main {
 //		SimpleCollection.sorting();
 //		SimpleCollection.usingMap();
 
-		/*Edit run configurations -> arguments*/
+		/* Edit run configurations -> arguments */
 //		ExerciseCmdLine.readFileFromArgs(args);
 //		StoreAndLoadProperty.createProperty();
 //		StoreAndLoadProperty.writePropertyOnSimpleText();
@@ -54,7 +54,11 @@ public class Main {
 //		StoreAndLoadProperty.readPropertiesFromXML();
 //		StoreAndLoadProperty.createPropertyDefaults();
 
-		StoreAndLoadProperty.loadDefaultPropertiesFromFile();
+//		StoreAndLoadProperty.loadDefaultPropertiesFromFile();
+		
+	
+		DoLogCalls.printlogMessages();
+
 	}
 
 	public static void playWithZipFiles() {
