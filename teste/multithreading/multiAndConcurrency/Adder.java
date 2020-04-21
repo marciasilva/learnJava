@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("rawtypes")
 public class Adder implements Callable {
 
 	private String inFile, outFile;
@@ -76,6 +77,7 @@ public class Adder implements Callable {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void doAddAndSaveResult() throws IOException {
 		int total = 0;
 		String line = null;

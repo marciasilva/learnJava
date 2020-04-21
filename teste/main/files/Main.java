@@ -17,6 +17,7 @@ import filesMngmt.ZipFileMngmt;
 import formattingAndExpressions.WorkingWithString;
 import logSystemMngmt.DoLogCalls;
 import multiAndConcurrency.Adder;
+import multiAndConcurrency.WorkerMngmt;
 import workingWithCollections.SimpleCollection;
 
 public class Main {
@@ -60,8 +61,10 @@ public class Main {
 //	
 //		DoLogCalls.printlogMessages();
 		
-		Adder.readWriteFilesWithThread();
+//		Adder.readWriteFilesWithThread();
 		
+		WorkerMngmt.operateWithBonus(false);
+		WorkerMngmt.operateWithBonus(true);
 		
 	}
 
