@@ -8,7 +8,7 @@ public class WorkerMngmt {
 
 	public static void operateWithBonus(Boolean applyBonus) {
 
-		BankAccount myBA = new BankAccount(0);
+		BankAccount myBA = new BankAccount();
 		TxWorker[] workers = null;
 		if (applyBonus) {
 			workers = createSimpleTransactions(myBA);
