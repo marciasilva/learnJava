@@ -12,11 +12,13 @@ public class HighVolumeAccount extends BankAccount implements Runnable {
 	}
 
 	private int[] readDailyDeposits() {
-		return [];
+		int[] dummyDepositArray = {10,10,2400};
+		return dummyDepositArray;
 	}
 
-	private int readDailyWithdrawals () {
-		return [];
+	private int[] readDailyWithdrawals () {
+		int[] dummyWithdrawalsArray = {10,10,56,876};
+		return dummyWithdrawalsArray;		
 	}
 
 	@Override

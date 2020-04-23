@@ -4,10 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import controlling.ExerciseCmdLine;
 import controlling.StoreAndLoadProperty;
@@ -17,22 +22,28 @@ import filesMngmt.ZipFileMngmt;
 import formattingAndExpressions.WorkingWithString;
 import logSystemMngmt.DoLogCalls;
 import multiAndConcurrency.Adder;
+import multiAndConcurrency.BankAccount;
 import multiAndConcurrency.WorkerMngmt;
+import reflection.ProcessedBy;
+import reflection.TaskWorker;
+import reflection.WorkHandler;
+import serialization.WorkingWithSerialization;
 import workingWithCollections.SimpleCollection;
 
 public class Main {
 	public static void main(String[] args) throws InterruptedException, IOException {
 //		// TODO Auto-generated method stub
-//		try {
+		try {
 //			doTryCatchFinally();
 //			doTryWithResources();
 //		    doTryWithResourcesMulti();
 //			doCloseThing();
 //			playWithZipFiles();			
-//		} catch (Exception e) {
+
+		} catch (Exception e) {
 //			System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
 //			e.printStackTrace();
-//		}
+		}
 //
 //		WorkingWithString.creatingAStringComposing();
 //		WorkingWithString.handleEmptyString();
@@ -60,12 +71,17 @@ public class Main {
 //		
 //	
 //		DoLogCalls.printlogMessages();
-		
+
 //		Adder.readWriteFilesWithThread();
-		
+
 		WorkerMngmt.operateWithBonus(false);
 		WorkerMngmt.operateWithBonus(true);
 		
+		
+		
+		WorkingWithSerialization.serializeAnObject();
+		
+
 	}
 
 	public static void playWithZipFiles() {
@@ -181,6 +197,84 @@ public class Main {
 		}
 	}
 
+	// Work Dispatch System Invocation
+	void startWork(String workerTypeName, Object workerTarget) {
+		try {
+			BankAccount acct1 = new BankAccount();
+
+			startWork("teste.reflection.AccountWorker", acct1);
+
+			// Get information of worker class
+			Class<?> workerType = Class.forName(workerTypeName);
+
+			// Get information of target class
+			Class<?> targetType = workerTarget.getClass();
+
+			// From worker class, get the type of constructor that accepts the targeType
+			@SuppressWarnings("rawtypes")
+			Constructor c = workerType.getConstructor(targetType);
+			Object worker = c.newInstance(workerTarget);
+
+			Method doWork = workerType.getMethod("doWork");
+			doWork.invoke(worker);
+
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | InstantiationException
+				| ClassNotFoundException | NoSuchMethodException | SecurityException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
+	// Work Dispatch System Interface Invocation
+	void startWorkWithInterface(String workerTypeName, Object workerTarget) {
+
+		try {
+			Class<?> workerType = Class.forName(workerTypeName);
+			TaskWorker worker = (TaskWorker) workerType.newInstance();
+			worker.setTarget(workerTarget);
+			worker.doWork();
+
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	// Acessing Annotations
+	void startWorkingWithAnnotations(String workerTypeName, Object workerTarget) throws Exception {
+		ExecutorService pool = Executors.newFixedThreadPool(3);;
+
+		Class<?> workerType = Class.forName(workerTypeName);
+		TaskWorker worker = (TaskWorker) workerType.newInstance();
+		worker.setTarget(workerTarget);
+
+		WorkHandler wh = workerType.getAnnotation(WorkHandler.class);
+		if(wh == null ) {
+			System.out.println("WorkHandler annotation not found");
+		}
+		if (wh.useThreadPool()) {
+			pool.submit(new Runnable() {
+				public void run() {
+					worker.doWork();
+				}
+			});
+		} else {
+			worker.doWork();
+		}
+	}
+	
+	void startWorkSelfContained(String workerTypeName, Object workerTarget) throws Exception {
+		Class <?> targetType = workerTarget.getClass();
+		ProcessedBy pb = targetType.getAnnotation(ProcessedBy.class);
+		Class <?> workerType = pb.value();
+		TaskWorker worker = (TaskWorker) workerType.newInstance();
+		Method doWork = workerType.getMethod("doWork");
+		doWork.invoke(worker);			
+	}
+	
 	/*
 	 * 
 	 * 
