@@ -12,5 +12,6 @@
 	<classpathentry kind="src" path="multithreading"/>
 	<classpathentry kind="src" path="annotations"/>
 	<classpathentry kind="src" path="serialization"/>
+	<classpathentry kind="lib" path="resources/derby.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
